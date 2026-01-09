@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证码测试平台</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 多类型验证码测试平台</h1>
+            <p class="subtitle">支持字符验证码、图片选择验证码、滑动验证码</p>
+        </header>
+
+        <nav class="type-selector">
+            <button class="type-btn active" data-type="character">
+                <span class="icon">🔤</span>
+                <span>字符验证码</span>
+            </button>
+            <button class="type-btn" data-type="image_select">
+                <span class="icon">🖼️</span>
+                <span>图片选择</span>
+            </button>
+            <button class="type-btn" data-type="slide">
+                <span class="icon">🎯</span>
+                <span>滑动验证</span>
+            </button>
+        </nav>
+
+        <main>
+            <div class="captcha-section">
+                <div class="captcha-display" id="captchaDisplay">
+                    <p class="placeholder">点击下方按钮生成验证码</p>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" id="generateBtn">
+                        <span>生成验证码</span>
+                    </button>
+                    <button class="btn btn-secondary" id="refreshBtn" style="display: none;">
+                        <span>🔄 刷新</span>
+                    </button>
+                </div>
+
+                <div class="input-section" id="inputSection" style="display: none;">
+                    <div class="input-group" id="characterInput">
+                        <label>请输入验证码：</label>
+                        <input type="text" id="captchaCode" placeholder="输入字符" maxlength="4">
+                    </div>
+
+                    <div class="input-group" id="imageSelectInput" style="display: none;">
+                        <p>请点击选择图片</p>
+                        <div class="selected-info">
+                            已选择: <span id="selectedCount">0</span> 张
+                        </div>
+                    </div>
+
+                    <div class="input-group" id="slideInput" style="display: none;">
+                        <p>拖动滑块完成拼图</p>
+                    </div>
+
+                    <button class="btn btn-success" id="verifyBtn">
+                        <span>✅ 验证</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-card" id="resultCard">
+                    <div class="result-icon" id="resultIcon"></div>
+                    <div class="result-message" id="resultMessage"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>基于 go-common/captcha 包 | 支持三种验证码类型</p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
