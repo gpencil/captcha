@@ -5,15 +5,14 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
-                 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 600px;
     margin: 0 auto;
     background: white;
     border-radius: 20px;
@@ -29,9 +28,8 @@ header {
 }
 
 header h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 10px;
-    font-weight: 700;
 }
 
 .subtitle {
@@ -39,59 +37,15 @@ header h1 {
     opacity: 0.9;
 }
 
-.type-selector {
-    display: flex;
-    gap: 15px;
-    padding: 30px;
-    background: #f8f9fa;
-    border-bottom: 2px solid #e9ecef;
-}
-
-.type-btn {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-    border: 2px solid #dee2e6;
-    background: white;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.type-btn:hover {
-    border-color: #667eea;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-}
-
-.type-btn.active {
-    border-color: #667eea;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.type-btn .icon {
-    font-size: 2em;
-}
-
 main {
     padding: 40px 30px;
 }
 
-.captcha-section {
-    margin-bottom: 30px;
-}
-
 .captcha-display {
-    min-height: 300px;
+    min-height: 250px;
     background: #f8f9fa;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -103,81 +57,9 @@ main {
     font-size: 1.1em;
 }
 
-/* 字符验证码样式 */
-.captcha-canvas {
-    text-align: center;
-}
-
-.captcha-canvas img {
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
-    background: white;
-    max-width: 100%;
-}
-
-.hint {
-    margin-top: 10px;
-    color: #6c757d;
-    font-size: 0.9em;
-}
-
-/* 图片选择验证码样式 */
-.image-select-container {
-    width: 100%;
-    max-width: 600px;
-}
-
-.question {
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #495057;
-}
-
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.image-item {
-    position: relative;
-    cursor: pointer;
-    border: 3px solid transparent;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.image-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.image-item.selected {
-    border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
-}
-
-.image-item img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-}
-
-.select-count {
-    text-align: center;
-    color: #6c757d;
-    font-size: 0.9em;
-}
-
-/* 滑动验证码样式 */
+/* 滑块验证码样式 */
 .slide-container {
     width: 100%;
-    max-width: 400px;
 }
 
 .slide-canvas {
@@ -186,11 +68,27 @@ main {
     border: 2px solid #dee2e6;
     border-radius: 8px;
     overflow: hidden;
+    width: 350px;
+    height: 200px;
+    margin: 0 auto;
 }
 
 .background-img {
     width: 100%;
+    height: 100%;
     display: block;
+    object-fit: cover;
+}
+
+.template-img {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    transition: left 0.05s ease-out;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .slider-track {
@@ -198,35 +96,55 @@ main {
     bottom: 10px;
     left: 10px;
     right: 10px;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .slider-button {
     position: absolute;
     left: 0;
     top: 0;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 50%;
+    border-radius: 20px;
     cursor: grab;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
+.slider-button:hover {
+    transform: scale(1.05);
 }
 
 .slider-button:active {
     cursor: grabbing;
+    transform: scale(0.98);
 }
 
-.slider-button::after {
-    content: '→';
-    font-size: 1.5em;
+.slider-icon {
+    font-size: 1.2em;
+    user-select: none;
+}
+
+.slider-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #6c757d;
+    font-size: 0.85em;
+    pointer-events: none;
+    white-space: nowrap;
 }
 
 /* 控制按钮样式 */
@@ -245,10 +163,6 @@ main {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
 }
 
 .btn-primary {
@@ -273,6 +187,7 @@ main {
 .btn-success {
     background: #28a745;
     color: white;
+    width: 100%;
 }
 
 .btn-success:hover {
@@ -286,38 +201,6 @@ main {
     background: #f8f9fa;
     padding: 25px;
     border-radius: 12px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #495057;
-}
-
-.input-group input[type="text"] {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-.input-group input[type="text"]:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.selected-info {
-    font-size: 1.1em;
-    color: #495057;
-    font-weight: 500;
 }
 
 /* 结果展示样式 */
@@ -383,24 +266,12 @@ footer {
     }
 
     header h1 {
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
 
-    .type-selector {
-        flex-direction: column;
-    }
-
-    .type-btn {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    main {
-        padding: 20px 15px;
-    }
-
-    .image-grid {
-        grid-template-columns: 1fr;
+    .slide-canvas {
+        width: 100%;
+        max-width: 350px;
     }
 
     .controls {
